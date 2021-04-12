@@ -27,8 +27,8 @@ RSpec.describe 'As a visitor' do
       studio1 = Studio.create!(name: "Big Movie Studio", location: "Hollywood")
       movie1 = studio1.movies.create!(title: "Lord of the Rings", creation_year: 2000, genre: "Action")
       movie2 = studio1.movies.create!(title: "Passengers", creation_year: 2018, genre: "Sci-Fi")
-      actor1 = studio1.movie1.actors.create!(name: "Vigo Mortison", age: 40)
-      actor2 = studio1.movie2.actors.create!(name: "Chris Pratt", age: 36)
+      actor1 = studio1.actors.create!(name: "Vigo Mortison", age: 40)
+      actor2 = studio1.actors.create!(name: "Chris Pratt", age: 36)
       visit "/studios/#{studio1.id}"
 
       expect(page).to have_content(actor1.name)
