@@ -18,17 +18,10 @@ RSpec.describe 'As a visitor' do
       visit "/studios/#{studio1.id}"
 
       expect(page).to have_content(movie1.title)
-      expect(page).to have_content(movie1.creation_year)
-      expect(page).to have_content(movie1.genre)
-
       expect(page).to have_content(movie2.title)
-      expect(page).to have_content(movie2.creation_year)
-      expect(page).to have_content(movie2.genre)
-
       expect(page).to have_content(movie3.title)
-      expect(page).to have_content(movie3.creation_year)
-      expect(page).to have_content(movie3.genre)
+
     end
-  
+
   end
 end
