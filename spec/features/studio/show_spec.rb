@@ -35,5 +35,15 @@ RSpec.describe 'As a visitor' do
       expect(page).to have_content(actor2.name)
     end
 
+    # it "I see the list of actors is unique" do
+    #   studio1 = Studio.create!(name: "Big Movie Studio", location: "Hollywood")
+    #   movie1 = studio1.movies.create!(title: "Lord of the Rings", creation_year: 2000, genre: "Action")
+    #   actor1 = studio1.actors.create!(name: "Vigo Mortison", age: 40)
+    #   actor2 = studio1.actors.create!(name: "Vigo Mortison", age: 40)
+    #   visit "/studios/#{studio1.id}"
+    #
+    #   expect(page).to_not have_content(actor2)
+    # end
+
   end
 end

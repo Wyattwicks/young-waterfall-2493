@@ -33,7 +33,7 @@ RSpec.describe 'As a visitor' do
 
       expect(page).to have_content("Add an actor")
       fill_in 'Name', with: 'Ian McKellin'
-      click_on 'submit'
+      click_button 'submit'
 
       expect(current_path).to eq("/movies/#{movie1.id}")
       expect(page).to have_content('Ian McKellin')
