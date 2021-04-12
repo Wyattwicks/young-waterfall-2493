@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_05_203623) do
+ActiveRecord::Schema.define(version: 2021_04_12_160304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actors", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "studio_id"
+    t.index ["studio_id"], name: "index_actors_on_studio_id"
+  end
+
+  create_table "mechanics", force: :cascade do |t|
+    t.string "name"
+    t.integer "years_of_experience"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mechanics_and_rides", force: :cascade do |t|
+    t.bigint "mechanic_id"
+    t.bigint "ride_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mechanic_id"], name: "index_mechanics_and_rides_on_mechanic_id"
+    t.index ["ride_id"], name: "index_mechanics_and_rides_on_ride_id"
+  end
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
@@ -25,6 +50,14 @@ ActiveRecord::Schema.define(version: 2021_04_05_203623) do
     t.index ["studio_id"], name: "index_movies_on_studio_id"
   end
 
+  create_table "rides", force: :cascade do |t|
+    t.text "name"
+    t.boolean "open"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "thrill_score"
+  end
+
   create_table "studios", force: :cascade do |t|
     t.string "name"
     t.string "location"
@@ -32,5 +65,8 @@ ActiveRecord::Schema.define(version: 2021_04_05_203623) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "actors", "studios"
+  add_foreign_key "mechanics_and_rides", "mechanics"
+  add_foreign_key "mechanics_and_rides", "rides"
   add_foreign_key "movies", "studios"
 end
